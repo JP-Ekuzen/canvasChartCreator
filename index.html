@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts creator</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="chart-type" align="center">
+        <p>
+            Stwórz wykres
+            <select name="chart-type-select" id="chart-type-select" onchange="changeSettings()">
+                <option value="">-------</option>
+                <option value="prosta">prostej (liniowej)</option>
+                <option value="parabola">paraboli (kwadratowa</option>
+                <option value="hiperbola">hiperboli</option>
+                <option value="logarytmiczna">logarytmicznej</option>
+            </select>
+        </p>
+    </div>
+    <hr>
+    <div id="chart-function-pattern" align="center">
+        <h3>Wzór funkcji</h3>
+        <img id="function-pattern-img"/>
+        <hr>
+    </div>
+</body>
+</html>
