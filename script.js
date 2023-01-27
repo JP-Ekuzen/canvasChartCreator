@@ -28,11 +28,12 @@ function editChartInputs (inputArray) {
 
     for (obj of inputArray) {
         let inputField = document.createElement('div');
-        inputField.innerHTML = `<span>Argument (${obj})</span>
+        inputField.innerHTML = `<label for="chart-input-${obj}">Argument (${obj})</label>
                                 <input type="text" id="chart-input-${obj}" name="chart-input-${obj}" required>`
 
         mainDiv.appendChild(inputField)
     }
+    if (inputArray.length) mainDiv.appendChild(document.createElement('hr'));
 }
 
 function changeSettings () {
@@ -61,3 +62,13 @@ function changeSettings () {
         }; break;
     }
 }
+
+
+function init () {
+    console.log('Work')
+    let canvas = document.getElementById('canvas')
+    let ctx = canvas.getContext('2d')
+}
+
+
+document.addEventListener('DOMContentLoaded', init)
