@@ -1,42 +1,51 @@
 var chartType
 
-function changeFunctionPreview () {
+function editFunctionImage (url) {
 
-    function changeVisibility (visibile) {
-        const obj = document.getElementById("chart-function-pattern")
+    function changeFunctionVisibility (visibile) {
+        const obj = document.getElementById("function-pattern")
         if (visibile) obj.style.display = 'block';
         else obj.style.display = 'none';
     }
 
-    function editImage (url) {
-        const obj = document.getElementById("function-pattern-img")
-        obj.setAttribute('src', url);
+    var fullUrl
+    if (url) fullUrl = 'https://latex.codecogs.com/svg.latex?\\Large&space;' + url;
+    else fullUrl = url
 
-        if (url) changeVisibility(true);
-        else changeVisibility(false);
-    }
+    const obj = document.getElementById("function-pattern-img")
+    obj.setAttribute('src', fullUrl);
+
+    if (url) changeFunctionVisibility(true);
+    else changeFunctionVisibility(false);
+}
+
+function editChartInputs () {
+
+}
+
+function changeSettings () {
+    chartType = document.getElementById("chart-type-select").value;
 
     switch (chartType) {
         case '': {
-            editImage('');
+            editFunctionImage('');
+            editChartInputs([]);
         }; break;
         case 'linear': {
-            editImage('https://latex.codecogs.com/svg.latex?\\Large&space;y=ax+b');
+            editFunctionImage('y=ax+b');
+            editChartInputs(['a', 'b']);
         }; break;
         case 'quadratic': {
-            editImage('https://latex.codecogs.com/svg.latex?\\Large&space;f(x)={x}^2');
+            editFunctionImage('f(x)={x}^2');
+            editChartInputs(['x']);
         }; break;
         case 'hyperbola': {
-            editImage('https://latex.codecogs.com/svg.latex?\\Large&space;f(x)=\\frac{a}{x}');
+            editFunctionImage('f(x)=\\frac{a}{x}');
+            editChartInputs(['a', 'x']);
         }; break;
         case 'logarithmic': {
-            editImage('https://latex.codecogs.com/svg.latex?\\Large&space;f(x)=log_{a}x');
+            editFunctionImage('f(x)=log_{a}x');
+            editChartInputs(['a', 'x']);
         }; break;
     }
-}
-
-function changeSettings() {
-    chartType = document.getElementById("chart-type-select").value;
-
-    changeFunctionPreview()
 }
