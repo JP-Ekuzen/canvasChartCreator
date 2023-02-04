@@ -230,7 +230,7 @@ function drawCanvas () {
 
 function init () {
 
-    setupCanvas();
+    drawCanvas();
 
     myGraph.drawEquation(function(x) {
         return 3 * Math.sin(x);
