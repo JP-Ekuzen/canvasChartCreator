@@ -1,5 +1,6 @@
 var chartType, myGraph
 
+//  Zmiana podglądu wzoru na funkcje.
 function editFunctionImage (url) {
 
     function changeFunctionVisibility (visibile) {
@@ -19,9 +20,8 @@ function editFunctionImage (url) {
     else changeFunctionVisibility(false);
 }
 
+// Dodawanie oraz czyszczenie pól do wpisania wartości.
 function editChartInputs (inputArray) {
-
-    // Clear old inputs.
     document.getElementById('chart-inputs').innerHTML = "";
 
     const mainDiv = document.getElementById("chart-inputs")
@@ -36,6 +36,7 @@ function editChartInputs (inputArray) {
     if (inputArray.length) mainDiv.appendChild(document.createElement('hr'));
 }
 
+// Zmiana ustawień po zmianie wykresu przez użytkownika.
 function changeSettings () {
     chartType = document.getElementById("chart-type-select").value;
 
@@ -63,38 +64,39 @@ function changeSettings () {
     }
 }
 
-function Graph(config) {
-    // user defined properties
-    this.canvas = document.getElementById(config.canvasId);
-    this.minX = config.minX;
-    this.minY = config.minY;
-    this.maxX = config.maxX;
-    this.maxY = config.maxY;
-    this.unitsPerTick = config.unitsPerTick;
+// Rysuje linie z wartościami na obu osiach.
+function drawMarksOnCanvas () {
+    function Graph(config) {
+        // user defined properties
+        this.canvas = document.getElementById(config.canvasId);
+        this.minX = config.minX;
+        this.minY = config.minY;
+        this.maxX = config.maxX;
+        this.maxY = config.maxY;
+        this.unitsPerTick = config.unitsPerTick;
 
-    // constants
-    this.axisColor = '#aaa';
-    this.font = '8pt Calibri';
-    this.tickSize = 20;
+        // constants
+        this.axisColor = '#aaa';
+        this.font = '8pt Calibri';
+        this.tickSize = 20;
 
-    // relationships
-    this.context = this.canvas.getContext('2d');
-    this.rangeX = this.maxX - this.minX;
-    this.rangeY = this.maxY - this.minY;
-    this.unitX = this.canvas.width / this.rangeX;
-    this.unitY = this.canvas.height / this.rangeY;
-    this.centerY = Math.round(Math.abs(this.minY / this.rangeY) * this.canvas.height);
-    this.centerX = Math.round(Math.abs(this.minX / this.rangeX) * this.canvas.width);
-    this.iteration = (this.maxX - this.minX) / 1000;
-    this.scaleX = this.canvas.width / this.rangeX;
-    this.scaleY = this.canvas.height / this.rangeY;
+        // relationships
+        this.context = this.canvas.getContext('2d');
+        this.rangeX = this.maxX - this.minX;
+        this.rangeY = this.maxY - this.minY;
+        this.unitX = this.canvas.width / this.rangeX;
+        this.unitY = this.canvas.height / this.rangeY;
+        this.centerY = Math.round(Math.abs(this.minY / this.rangeY) * this.canvas.height);
+        this.centerX = Math.round(Math.abs(this.minX / this.rangeX) * this.canvas.width);
+        this.iteration = (this.maxX - this.minX) / 1000;
+        this.scaleX = this.canvas.width / this.rangeX;
+        this.scaleY = this.canvas.height / this.rangeY;
 
-    // draw x and y axis
-    this.drawXAxis();
-    this.drawYAxis();
-}
+        // draw x and y axis
+        this.drawXAxis();
+        this.drawYAxis();
+    }
 
-function drawCanvas () {
     Graph.prototype.drawXAxis = function() {
         var context = this.context;
         context.save();
@@ -228,20 +230,61 @@ function drawCanvas () {
     });
 }
 
+
+function drawChartOnCanvas() {
+    switch(chartType) {
+        case 'linear': {
+            myGraph.drawEquation(function(x) {
+                return 5;
+            }, 'green', 3);
+        }; break;
+        case 'quadratic': {
+            myGraph.drawEquation(function(x) {
+                return Math.pow(x,2);
+            }, 'blue', 3);
+        }; break;
+        case 'hyperbola': {
+            myGraph.drawEquation(function(x) {
+                return 1/x;
+            }, 'green', 3);
+        }; break;
+        case 'logarithmic': {
+            myGraph.drawEquation(function(x) {
+                return calculateLogarithm(10,x);
+            }, 'red', 3);
+        }
+    }
+}
+
+// Do obliczania logarytmu z customową podstawą
+function calculateLogarithm(base, x) {
+	var a = Math.log(x);
+    var b = Math.log(base);
+
+    return a / b;
+}
+
 function init () {
 
-    drawCanvas();
-
-    myGraph.drawEquation(function(x) {
-        return 3 * Math.sin(x);
-    }, 'green', 3);
+    drawMarksOnCanvas();
 
     // myGraph.drawEquation(function(x) {
-    //     return x * x;
+    //     return 5;
+    // }, 'green', 3);
+
+    // // Parabola
+    // myGraph.drawEquation(function(x) {
+    //     return Math.pow(x,2);
     // }, 'blue', 3);
 
+    // Hiperbola
     // myGraph.drawEquation(function(x) {
-    //     return 1 * x;
+    //     return 1/x;
+    // }, 'green', 3);
+
+    // Logarytmiczna
+    // myGraph.drawEquation(function(x) {
+    //     return calculateLogarithm(2,x);
     // }, 'red', 3);
 }
 
