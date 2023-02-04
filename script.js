@@ -220,9 +220,9 @@ function drawCanvas () {
 
     myGraph = new Graph({
         canvasId: 'canvas',
-        minX: -10,
+        minX: -20,
         minY: -10,
-        maxX: 10,
+        maxX: 20,
         maxY: 10,
         unitsPerTick: 1
     });
