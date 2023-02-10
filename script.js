@@ -50,16 +50,16 @@ function changeSettings () {
             editChartInputs(['a', 'b']);
         }; break;
         case 'quadratic': {
-            editFunctionImage('f(x)={x}^2');
-            editChartInputs(['x']);
+            editFunctionImage('f(x)={ax}^2+bx+c');
+            editChartInputs(['a', 'b', 'c']);
         }; break;
-        case 'hyperbola': {
+        case 'hyperbole': {
             editFunctionImage('f(x)=\\frac{a}{x}');
-            editChartInputs(['a', 'x']);
+            editChartInputs(['a']);
         }; break;
         case 'logarithmic': {
             editFunctionImage('f(x)=log_{a}x');
-            editChartInputs(['a', 'x']);
+            editChartInputs(['a']);
         }; break;
     }
 }
@@ -222,14 +222,13 @@ function drawMarksOnCanvas () {
 
     myGraph = new Graph({
         canvasId: 'canvas',
-        minX: -20,
-        minY: -10,
-        maxX: 20,
-        maxY: 10,
+        minX: -10,
+        minY: -5,
+        maxX: 10,
+        maxY: 5,
         unitsPerTick: 1
     });
 }
-
 
 function drawChartOnCanvas() {
     switch(chartType) {
@@ -243,7 +242,7 @@ function drawChartOnCanvas() {
                 return Math.pow(x,2);
             }, 'blue', 3);
         }; break;
-        case 'hyperbola': {
+        case 'hyperbole': {
             myGraph.drawEquation(function(x) {
                 return 1/x;
             }, 'green', 3);
@@ -265,27 +264,31 @@ function calculateLogarithm(base, x) {
 }
 
 function init () {
-
     drawMarksOnCanvas();
 
-    // myGraph.drawEquation(function(x) {
-    //     return 5;
-    // }, 'green', 3);
+    myGraph.drawEquation(function(x) {
+        return 3;
+    }, 'orange', 3);
 
-    // // Parabola
-    // myGraph.drawEquation(function(x) {
-    //     return Math.pow(x,2);
-    // }, 'blue', 3);
+    // Parabola
+    myGraph.drawEquation(function(x) {
+        return Math.pow(x,2);
+    }, 'blue', 3);
 
     // Hiperbola
-    // myGraph.drawEquation(function(x) {
-    //     return 1/x;
-    // }, 'green', 3);
+    myGraph.drawEquation(function(x) {
+        return 1/x;
+    }, 'green', 3);
 
     // Logarytmiczna
-    // myGraph.drawEquation(function(x) {
-    //     return calculateLogarithm(2,x);
-    // }, 'red', 3);
+    myGraph.drawEquation(function(x) {
+        return calculateLogarithm(2,x);
+    }, 'red', 3);
+
+    // Wykładnicza
+    myGraph.drawEquation(function(x) {
+        return Math.pow(2,x);
+    }, 'purple', 3);
 }
 
 
