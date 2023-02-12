@@ -4,36 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charts creator</title>
-    <script src="script.js"></script>
+    <title>Generator wykresu</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="chart-type" align="center">
-        <h1>Canvas Chart Generator</h1>
-        <p>
-            Stwórz wykres
-            <select name="chart-type-select" id="chart-type-select" onchange="changeSettings()">
-                <option value="">-------</option>
-                <option value="linear">prostej</option>
-                <option value="quadratic">paraboli</option>
-                <option value="hyperbole">hiperboli</option>
-                <option value="logarithmic">logarytmicznej</option>
-                <option value="exponential">wykładniczej</option>
-            </select>
-        </p>
-    </div>
-    <div id="function-pattern" align="center" style="display:none;">
-        <hr>
-        <h3>Wzór funkcji</h3>
-        <img id="function-pattern-img"/>
-    </div>
-    <br>
-    <div id="chart-inputs" align="center"></div>
-    <div id="chart-canvas" align="center">
-        <canvas id="canvas" width="1000px" height="500px" style="border:1px solid rgba(149, 149, 149);">
-            Your browser does not support the HTML 5 Canvas.
-        </canvas>
+    <div class="center">
+        <h2>Jaki wykres chcesz teraz wygenerować?</h2>
+        <div>
+            <button class="btn btn-blue" onclick="changeChartType('linear')">Funkcji liniowej</button> <!-- Prosta -->
+            <button class="btn btn-blue" onclick="changeChartType('quadratic')">Funkcji kwadratowej</button> <!-- Parabola -->
+            <button class="btn btn-blue" onclick="changeChartType('hyperbole')">Funkcji homograficznej</button> <!-- Hiperbola -->
+            <button class="btn btn-blue" onclick="changeChartType('logarithmic')">Funkcji logarytmicznej</button>
+            <button class="btn btn-blue" onclick="changeChartType('exponential')">Funkcji wykładniczej</button>
+        </div>
     </div>
 </body>
 </html>
