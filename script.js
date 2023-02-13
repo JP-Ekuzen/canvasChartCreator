@@ -16,13 +16,13 @@ function showFunctionParameters(parameters) {
     for (symbol of parameters) {
         let inputField = document.createElement('div');
         inputField.innerHTML = `<label for="chart-input-${symbol}">Argument (${symbol})</label>
-                                <input type="text" class="input-parameter" id="chart-input-${symbol}" name="chart-input-${symbol}" required>`
+                                <input type="number" class="input-parameter" id="chart-input-${symbol}" name="chart-input-${symbol}" required>`
 
         inputsDiv.appendChild(inputField);
     }
 
     let submitButton = document.createElement('div');
-    submitButton.innerHTML = `<button class="btn btn-blue">Wygeneruj wykres</button>`
+    submitButton.innerHTML = `<button class="btn btn-green">Wygeneruj wykres</button>`
     inputsDiv.appendChild(submitButton);
 
 }
