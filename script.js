@@ -41,6 +41,16 @@ function showFunctionParameters(parameters) {
 
     // Dodawanie przycisku potwierdzającego generowanie wykresu.
     let submitButton = document.createElement('div');
-    submitButton.innerHTML = `<button class="btn btn-green">Wygeneruj wykres</button>`
+    submitButton.innerHTML = `<button class="btn btn-green" onclick="generateChart()">Wygeneruj wykres</button>`
     inputsDiv.appendChild(submitButton);
+}
+
+function generateChart() {
+    document.getElementById('function-chart').style.display = 'block';
+    let canvasContainer = document.getElementById('canvas-container');
+
+    // Dodawanie canvasu do pustego diva
+    let canvasTag = document.createElement('div');
+    canvasTag.innerHTML = `<canvas id="canvas" width="1000px" height="500px" style="border:1px solid rgba(149, 149, 149);">Your browser does not support the HTML 5 Canvas.</canvas>`
+    canvasContainer.appendChild(canvasTag);
 }

@@ -35,6 +35,7 @@ html {
 .line {
     border: 1px solid #cacaca;
     width: 80%;
+    margin: 25px auto;
 }
 
 .input-parameter {
