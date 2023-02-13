@@ -16,12 +16,16 @@
     <div class="center">
         <h2>Jaki wykres chcesz teraz wygenerować?</h2>
         <div>
-            <button class="btn btn-blue" onclick="changeChartType('linear')">Funkcji liniowej</button> <!-- Prosta -->
-            <button class="btn btn-blue" onclick="changeChartType('quadratic')">Funkcji kwadratowej</button> <!-- Parabola -->
-            <button class="btn btn-blue" onclick="changeChartType('hyperbole')">Funkcji homograficznej</button> <!-- Hiperbola -->
-            <button class="btn btn-blue" onclick="changeChartType('logarithmic')">Funkcji logarytmicznej</button>
-            <button class="btn btn-blue" onclick="changeChartType('exponential')">Funkcji wykładniczej</button>
+            <button class="btn btn-blue" onclick="changeChartType('linear', ['a', 'b'])">Funkcji liniowej</button> <!-- Prosta -->
+            <button class="btn btn-blue" onclick="changeChartType('quadratic', ['a', 'b', 'c'])">Funkcji kwadratowej</button> <!-- Parabola -->
+            <button class="btn btn-blue" onclick="changeChartType('hyperbole', ['a'])">Funkcji homograficznej</button> <!-- Hiperbola -->
+            <button class="btn btn-blue" onclick="changeChartType('logarithmic', ['a'])">Funkcji logarytmicznej</button>
+            <button class="btn btn-blue" onclick="changeChartType('exponential', ['a'])">Funkcji wykładniczej</button>
         </div>
+    </div>
+    <div class="center" id="function-parameters" style="display:none;">
+        <hr class="line">
+        <div id="function-parameters-inputs"></div>
     </div>
 </body>
 </html>

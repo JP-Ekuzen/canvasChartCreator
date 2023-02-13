@@ -18,7 +18,7 @@ html {
     display: inline-block;
     font-size: 20px;
     border-radius: 8px;
-    margin: 7px;
+    margin: 10px;
     cursor: pointer;
 }
 
@@ -31,3 +31,13 @@ html {
         background-color: #36c93d;
         color: white;
     }
+
+.line {
+    border: 1px solid #cacaca;
+    width: 80%;
+}
+
+.input-parameter {
+    font-size: 20px;
+    font-family: 'Rubik', sans-serif;
+}
