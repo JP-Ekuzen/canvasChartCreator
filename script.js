@@ -86,9 +86,26 @@ function generateChart() {
             }, 'green', 3);
         }; break;
         case 'logarithmic': {
-            console.log('s')
+            function calculateLogarithm(base, x) {
+                var a = Math.log(x);
+                var b = Math.log(base);
+
+                return a / b;
+            }
+
+            a = parseInt(document.getElementById('parameter-input-a').value)
+
+            myGraph.drawEquation(function(x) {
+                return calculateLogarithm(a,x);
+            }, 'green', 3);
         }; break;
-        case 'exponential': mathUrlFragment = 'f(x)={a}^x'; break;
+        case 'exponential': {
+            a = parseInt(document.getElementById('parameter-input-a').value)
+
+            myGraph.drawEquation(function(x) {
+                return Math.pow(a,x);
+            }, 'green', 3);
+        }; break;
     }
 
     myGraph.drawEquation(function(x) {
