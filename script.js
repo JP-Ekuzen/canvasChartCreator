@@ -2,7 +2,6 @@ let chartType = null;
 
 function changeChartType (type, parameters) {
     chartType = type
-    console.log(chartType);
 
     showFunctionParameters(parameters);
 }
