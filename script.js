@@ -1,9 +1,11 @@
 let chartType = null;
+let buttonPosition = 'center-r'; // Pozycja przycisku i kierunek w jaki będzie iść
 
 function changeChartType (type, parameters) {
     chartType = type
 
     showFunctionParameters(parameters);
+    buttonPosition = 'center-r';
 }
 
 function showFunctionParameters(parameters) {
@@ -45,11 +47,12 @@ function showFunctionParameters(parameters) {
 
     // Dodawanie przycisku potwierdzającego generowanie wykresu.
     let submitButton = document.createElement('div');
-    submitButton.innerHTML = `<button class="btn btn-green" onclick="generateChart()">Wygeneruj wykres</button>`
+    submitButton.innerHTML = `<button id="generateChartBtn" class="btn btn-green" onmouseover="antiEmptyInput()" onclick="generateChart()">Wygeneruj wykres</button>`
     inputsDiv.appendChild(submitButton);
 }
 
 function generateChart() {
+    if (antiEmptyInput()) return; // Jeśli któryś z parametrów jest pusty, funckja ma się zatrzymać
     document.getElementById('function-chart').style.display = 'block';
 
     // Tworzenie canvasa i umieszczanie na nim lini z wartościami na osiach
@@ -285,3 +288,68 @@ function generateClearCanvas() {
     });
 }
 
+function antiEmptyInput() {
+    let toMove = false
+    function checkIfEmpty(parameters) {
+        for (parameter of parameters) {
+            if (!parameter) toMove = true;
+        }
+
+        if (toMove) {
+            let btn = document.getElementById('generateChartBtn')
+
+            let valueToMove = 700
+
+            switch (buttonPosition) {
+                case 'center-r': {
+                    btn.style.marginLeft = `${valueToMove}px`;
+                    buttonPosition = 'right';
+                }; break;
+                case 'right': {
+                    btn.style.marginLeft = '10px';
+                    buttonPosition = 'center-l';
+                }; break;
+                case 'center-l': {
+                    btn.style.marginLeft = `${-valueToMove}px`;
+                    buttonPosition = 'left';
+                }; break;
+                case 'left': {
+                    btn.style.marginLeft = '10px';
+                    buttonPosition = 'center-r';
+                }; break;
+            }
+        }
+    }
+
+    switch (chartType) {
+        case 'linear': {
+            a = parseInt(document.getElementById('parameter-input-a').value)
+            b = parseInt(document.getElementById('parameter-input-b').value)
+
+            checkIfEmpty([a,b]);
+        }; break;
+        case 'quadratic': {
+            a = parseInt(document.getElementById('parameter-input-a').value)
+            b = parseInt(document.getElementById('parameter-input-b').value)
+            c = parseInt(document.getElementById('parameter-input-c').value)
+
+            checkIfEmpty([a,b,c]);
+        }; break;
+        case 'hyperbole': {
+            a = parseInt(document.getElementById('parameter-input-a').value)
+
+            checkIfEmpty([a]);
+        }; break;
+        case 'logarithmic': {
+            a = parseInt(document.getElementById('parameter-input-a').value)
+
+            checkIfEmpty([a]);
+        }; break;
+        case 'exponential': {
+            a = parseInt(document.getElementById('parameter-input-a').value)
+
+            checkIfEmpty([a]);
+        }; break;
+    }
+    return toMove; // Ta funkcja jest używana też jeśli ktoś kliknie i wartość zwraca 'true' oznacza, żeby nie wykonywać generowania wykresu.
+}
